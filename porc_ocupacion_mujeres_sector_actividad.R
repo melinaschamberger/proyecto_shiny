@@ -21,11 +21,11 @@ privado_total <- read_csv("https://raw.githubusercontent.com/melinaschamberger/p
 privado_total <- privado_total %>% rename( "por_mu_sector_privado_total" = share_mujer)
 
 #Porcentaje de mujeres en el total de empresas, por sector de actividad
-empresas_dos_digitos <- read_csv("share_mujer_total_empresas_mensual_por_clae2_06122021.csv")
-empresas_tres_digitos <- read_csv("share_mujer_total_empresas_mensual_por_clae3_06122021.csv")
-empresas_seis_digitos <- read_csv("share_mujer_total_empresas_mensual_por_clae6_06122021.csv")
-empresas_letras <- read_csv("share_mujer_total_empresas_mensual_por_letra_06122021.csv")
-empresas_total <- read_csv("share_mujer_total_empresas_total_06122021.csv")
+empresas_dos_digitos <- read_csv("https://raw.githubusercontent.com/melinaschamberger/proyecto_shiny/main/Datos/Mujeres_sector_privado/share_mujer_total_empresas_mensual_por_clae2_06122021.csv")
+empresas_tres_digitos <- read_csv("https://raw.githubusercontent.com/melinaschamberger/proyecto_shiny/main/Datos/Mujeres_sector_privado/share_mujer_total_empresas_mensual_por_clae3_06122021.csv")
+empresas_seis_digitos <- read_csv("https://raw.githubusercontent.com/melinaschamberger/proyecto_shiny/main/Datos/Mujeres_sector_privado/share_mujer_total_empresas_mensual_por_clae6_06122021.csv")
+empresas_letras <- read_csv("https://raw.githubusercontent.com/melinaschamberger/proyecto_shiny/main/Datos/Mujeres_sector_privado/share_mujer_total_empresas_mensual_por_letra_06122021.csv")
+empresas_total <- read_csv("https://raw.githubusercontent.com/melinaschamberger/proyecto_shiny/main/Datos/Mujeres_sector_privado/share_mujer_total_empresas_total_06122021.csv")
 
 #Diccionario de clases: porcentaje de ocupación femenina por sector privado y sector de actividad
 datos_sector_privado <- read_csv("https://datos.produccion.gob.ar/dataset/162dc5a6-7a95-4f19-9d85-063c9be23208/resource/145dd127-630e-40a5-9a31-239e34a01d36/download/clae_diccionario.csv")
