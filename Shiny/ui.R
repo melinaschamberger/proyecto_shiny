@@ -23,4 +23,5 @@ ui <- fluidPage(theme = shinytheme("yeti"),
                                      mainPanel(plotOutput(outputId = "total_grado_pregrado_bars", height = 500)),
                                      tabPanel("Fuente",
                                               p(HTML("")),
+                                              p(HTML("<b>Estudiantes, nuevas/os inscriptas/os y egresadas/os de títulos de pregrado y grado por género según sector de gestión. Año 2019.</b>")),																								
                                               p(HTML("<b>Fuente: Anuario de Estadísticas Universitarias 2019 - Ministerio de Educación </b>"))))))
