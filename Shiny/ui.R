@@ -5,7 +5,7 @@ library(rsconnect)
 
 total_grado_pregrado <- read.csv("total_grado_pregrado.csv")
 
-ui <- fluidPage(theme = shinytheme("yeti"),
+ui <- fluidPage(theme = shinytheme("sandstone"),
                 title = "Trayectoria académica e inserción laboral femenina",
                 titlePanel(title = h1(strong("Trayectoria académica e inserción laboral femenina"), style="text-align: center")),
                 tabsetPanel(type = "tabs",
@@ -21,7 +21,6 @@ ui <- fluidPage(theme = shinytheme("yeti"),
                                                    choices = unique(total_grado_pregrado$Gestión),
                                                    selected = "Estatal")),
                                      mainPanel(plotOutput(outputId = "total_grado_pregrado_bars", height = 500)),
-                                     tabPanel("Fuente",
-                                              p(HTML("")),
+                                     tabPanel("Referencias",
                                               p(HTML("<b>Estudiantes, nuevas/os inscriptas/os y egresadas/os de títulos de pregrado y grado por género según sector de gestión. Año 2019.</b>")),																								
                                               p(HTML("<b>Fuente: Anuario de Estadísticas Universitarias 2019 - Ministerio de Educación </b>"))))))
