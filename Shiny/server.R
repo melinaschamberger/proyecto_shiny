@@ -5,6 +5,7 @@ library(rsconnect)
 
 
 total_grado_pregrado <- read.csv("total_grado_pregrado.csv")
+facultades_uba <- read.csv("facultades_uba.csv")
 
 server <- function(input, output) {
   
@@ -16,6 +17,27 @@ server <- function(input, output) {
     color_genero <- c("Femenino" = "darkviolet", "Masculino" = "grey")
     
       ggplot(data=sub_grado_pregrado) +
+      geom_bar(mapping = aes(x = Género, y = Porcentaje, fill=Género), 
+               stat = "identity")+
+      scale_fill_manual(values = color_genero) +
+      labs(x = "Género", 
+           y = "Porcentaje")+
+      theme_minimal() +
+      theme(legend.position = "none") +
+      geom_text(aes(x = Género, y = Porcentaje, label = Porcentaje), 
+                colour = "black",
+                position=position_dodge(width=0.9), 
+                vjust=-0.25)
+  })
+  
+  output$facultades_uba_bars <-renderPlot({
+    
+    sub_facultades_uba <- facultades_uba %>%
+      filter(Facultad == input$facultad)
+    
+    color_genero <- c("Femenino" = "darkviolet", "Masculino" = "grey")
+    
+    ggplot(data=sub_facultades_uba) +
       geom_bar(mapping = aes(x = Género, y = Porcentaje, fill=Género), 
                stat = "identity")+
       scale_fill_manual(values = color_genero) +
