@@ -5,7 +5,7 @@
 library(tidyverse)
 
 #Cargo datos
-total <-  read_csv("https://github.com/melinaschamberger/proyecto_shiny/blob/main/Datos/trayectoria_educativa/total_grado_pregrado.csv")
+total <-  read.csv("Datos/trayectoria_educativa/grado_pregrado.csv", sep=";", encoding = "UTF-8")
 
 #Renombro variables
 total <- rename(total, Categoría = X.U.FEFF.Categoría)
