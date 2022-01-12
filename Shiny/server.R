@@ -6,8 +6,8 @@ library(shinythemes)
 library(rsconnect)
 
 #Cargo datos
-total_grado_pregrado <- read.csv("Datos/trayectoria_educativa/porc_grado_pregrado.csv", sep=";", encoding = "UTF-8")
-facultades_uba <- read.csv("Datos/trayectoria_educativa/porc_facultades_uba.csv", sep=";", encoding = "UTF-8")
+total_grado_pregrado <- read.csv("C:/Users/Natasha/Desktop/proyecto_shiny/Datos/trayectoria_ecucativa/porc_grado_pregrado.csv")
+facultades_uba <- read.csv("C:/Users/Natasha/Desktop/proyecto_shiny/Datos/trayectoria_ecucativa/porc_facultades_uba.csv")
 
 #Configuro reactividad
 server <- function(input, output) {

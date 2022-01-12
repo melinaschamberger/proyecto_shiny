@@ -5,7 +5,7 @@
 library(tidyverse)
 
 #Cargo datos
-total <-  read.csv("Datos/trayectoria_educativa/grado_pregrado.csv", sep=";", encoding = "UTF-8")
+total <-  read.csv("C:/Users/Natasha/Desktop/proyecto_shiny/Datos/trayectoria_ecucativa/grado_pregrado.csv", sep=";", encoding = "UTF-8")
 
 #Renombro variables
 total <- rename(total, Categoría = X.U.FEFF.Categoría)
@@ -18,7 +18,5 @@ total <- total %>%
   group_by(Categoría, Gestión) %>%
   mutate(Porcentaje = round (100* Cantidad/ sum(Cantidad),2))
 
-#Guardo archivo con los porcentajes
-write.csv(total,"C:/Users/Natasha/Desktop/Proyecto Mel/Proyecto Shiny/total_grado_pregrado.csv", row.names = F)
 
 

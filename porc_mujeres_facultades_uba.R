@@ -5,7 +5,7 @@
 library(tidyverse)
 
 #Cargo datos
-facultades_uba <-  read.csv("Datos/trayectoria_educativa/facultades_uba.csv", sep=";", encoding = "UTF-8")
+facultades_uba <-  read.csv("C:/Users/Natasha/Desktop/proyecto_shiny/Datos/trayectoria_ecucativa/facultades_uba.csv", sep=";", encoding = "UTF-8")
 
 #Veo nombres de las columnas
 colnames(facultades_uba)
@@ -18,5 +18,4 @@ facultades_uba <- facultades_uba %>%
   group_by(Facultad) %>%
   mutate(Porcentaje = round (100* Cantidad/ sum(Cantidad),2))
 
-#Guardo archivo de porcentajes
-write.csv(facultades_uba,"C:/Users/Natasha/Desktop/Proyecto Mel/Proyecto Shiny/facultades_uba.csv", row.names = F)
+
