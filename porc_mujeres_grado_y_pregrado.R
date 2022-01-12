@@ -18,5 +18,5 @@ total <- total %>%
   group_by(Categoría, Gestión) %>%
   mutate(Porcentaje = round (100* Cantidad/ sum(Cantidad),2))
 
-
+write.csv(total,"porc_grado_pregrado.csv", row.names = F)
 

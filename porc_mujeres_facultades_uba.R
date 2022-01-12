@@ -18,4 +18,4 @@ facultades_uba <- facultades_uba %>%
   group_by(Facultad) %>%
   mutate(Porcentaje = round (100* Cantidad/ sum(Cantidad),2))
 
-
+write.csv(facultades_uba,"porc_facultades_uba.csv", row.names = F)
