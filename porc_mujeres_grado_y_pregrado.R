@@ -1,4 +1,4 @@
-#Porcentaje de mujeres en carreras de grado y pregrado. Todas las facultades.
+#Porcentaje de mujeres en carreras de grado y pregrado. Todas las facultades. 2019.
 #https://drive.google.com/file/d/1IiKj1ILMrR91J8-GCvVblA4UFjMZ3Eb9/view (datos transformados)
 
 #Librería
@@ -20,4 +20,5 @@ total <- total %>%
 
 #Guardo archivo con los porcentajes
 write.csv(total,"C:/Users/Natasha/Desktop/Proyecto Mel/Proyecto Shiny/total_grado_pregrado.csv", row.names = F)
+
 
