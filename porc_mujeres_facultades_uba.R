@@ -5,7 +5,7 @@
 library(tidyverse)
 
 #Cargo datos
-facultades_uba <-  read.csv("C:/Users/Natasha/Desktop/proyecto_shiny/Datos/trayectoria_ecucativa/facultades_uba.csv", sep=";", encoding = "UTF-8")
+facultades_uba <-  read.csv("https://raw.githubusercontent.com/melinaschamberger/proyecto_shiny/main/Datos/trayectoria_ecucativa/facultades_uba.csv", sep=";", encoding = "UTF-8")
 
 #Veo nombres de las columnas
 colnames(facultades_uba)
