@@ -1,27 +1,27 @@
-"Facultad","G�nero","Cantidad","Porcentaje"
-"Agronom�a","Femenino",2004,48.63
-"Agronom�a","Masculino",2117,51.37
-"Arquitectura, Dies�o y Urbanismo","Femenino",15276,62.33
-"Arquitectura, Dies�o y Urbanismo","Masculino",9233,37.67
-"Ciencias Econ�micas","Femenino",14879,49.81
-"Ciencias Econ�micas","Masculino",14995,50.19
-"Ciencias Exactas y Naturales","Femenino",3204,43.82
-"Ciencias Exactas y Naturales","Masculino",4108,56.18
-"Ciencias Sociales","Femenino",12049,63.79
-"Ciencias Sociales","Masculino",6840,36.21
-"Ciencias Veterinarias","Femenino",2946,77.26
-"Ciencias Veterinarias","Masculino",867,22.74
-"Derecho","Femenino",15222,60.32
-"Derecho","Masculino",10014,39.68
-"Farmacia y Bioqu�mica","Femenino",4259,73.46
-"Farmacia y Bioqu�mica","Masculino",1539,26.54
-"Filosof�a y letras","Femenino",7931,62.72
-"Filosof�a y letras","Masculino",4714,37.28
-"Ingenier�a","Femenino",1587,17.89
-"Ingenier�a","Masculino",7284,82.11
-"Medicina","Femenino",20302,72.34
-"Medicina","Masculino",7764,27.66
-"Odontolog�a","Femenino",1530,79.69
-"Odontolog�a","Masculino",390,20.31
-"Psicolog�a","Femenino",11935,79.65
-"Psicolog�a","Masculino",3049,20.35
+﻿Facultad;Género;Cantidad
+Agronomía;Femenino;2004
+Agronomía;Masculino;2117
+Arquitectura, Diesño y Urbanística;Femenino;15276
+Arquitectura, Diesño y Urbanismo;Masculino;9233
+Ciencias Económicas;Femenino;14879
+Ciencias Económicas;Masculino;14995
+Ciencias Exactas y Naturales;Femenino;3204
+Ciencias Exactas y Naturales;Masculino;4108
+Ciencias Sociales;Femenino;12049
+Ciencias Sociales;Masculino;6840
+Ciencias Veterinarias;Femenino;2946
+Ciencias Veterinarias;Masculino;867
+Derecho;Femenino;15222
+Derecho;Masculino;10014
+Farmacia y Bioquímica;Femenino;4259
+Farmacia y Bioquímica;Masculino;1539
+Filosofía y letras;Femenino;7931
+Filosofía y letras;Masculino;4714
+Ingeniería;Femenino;1587
+Ingeniería;Masculino;7284
+Medicina;Femenino;20302
+Medicina;Masculino;7764
+Odontología;Femenino;1530
+Odontología;Masculino;390
+Psicología;Femenino;11935
+Psicología;Masculino;3049
