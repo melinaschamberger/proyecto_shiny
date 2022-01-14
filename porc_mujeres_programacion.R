@@ -19,10 +19,29 @@ unique(programacion$Gestión)
 unique(programacion$Nivel.de.la.Oferta)
 unique(programacion$X)
 
-#Elimino columna X
-programacion$X <- NULL
+#Limpio la base -> Elimino fila 1714
+programacion<-programacion[-c(1714),]
 
-#Selecciono variables con las que voy a trabajar
+#Genero un nuevo dataframe de estudiantes, que solo contenga las variables con las que voy a trabajar.
+
+estudiantes <- c("Año", "Total.de.Estudiantes", "Estudiantes.Varones", "Estudiantes.Mujeres")
+df.estudiantes <- programacion[estudiantes]
+
+#Chequeo que las cantidades sean clase numeric
+class(programacion$Total.de.Estudiantes)
+class(programacion$Estudiantes.Varones)
+class(programacion$Estudiantes.Mujeres)
+
+#Los configuro como numeric
+programacion$Total.de.Estudiantes<-as.numeric(programacion$Total.de.Estudiantes)
+programacion$Estudiantes.Varones<-as.numeric(programacion$Estudiantes.Varones)
+programacion$Estudiantes.Mujeres<-as.numeric(programacion$Estudiantes.Mujeres)
+
+#Agrupo por año, calculo los totales de estudiantes y los porcentajes de varones y mujeres
+
+  
+
+
 
 
 
