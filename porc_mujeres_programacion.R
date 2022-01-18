@@ -9,7 +9,6 @@ colnames(programacion)
 
 #Veo valores únicos de algunas variables
 unique(programacion$Año)
-unique(programacion$Carrera)
 unique(programacion$Tipo.de.Institución)
 unique(programacion$Institución)
 unique(programacion$Unidad.Académica)
@@ -27,17 +26,34 @@ programacion<-programacion[-c(1714),]
 estudiantes <- c("Año", "Total.de.Estudiantes", "Estudiantes.Varones", "Estudiantes.Mujeres")
 df.estudiantes <- programacion[estudiantes]
 
-#Chequeo que las cantidades sean clase numeric
-class(programacion$Total.de.Estudiantes)
-class(programacion$Estudiantes.Varones)
-class(programacion$Estudiantes.Mujeres)
+#Chequeo que las cantidades sean clase integer
+class(df.estudiantes$Total.de.Estudiantes)
+class(df.estudiantes$Estudiantes.Varones)
+class(df.estudiantes$Estudiantes.Mujeres)
 
-#Los configuro como numeric
-programacion$Total.de.Estudiantes<-as.numeric(programacion$Total.de.Estudiantes)
-programacion$Estudiantes.Varones<-as.numeric(programacion$Estudiantes.Varones)
-programacion$Estudiantes.Mujeres<-as.numeric(programacion$Estudiantes.Mujeres)
+#Los configuro como integer
+df.estudiantes$Total.de.Estudiantes<-as.integer(df.estudiantes$Total.de.Estudiantes)
+df.estudiantes$Estudiantes.Varones<-as.integer(df.estudiantes$Estudiantes.Varones)
 
-#Agrupo por año, calculo los totales de estudiantes y los porcentajes de varones y mujeres
+#Omito NA
+limpia.estudiantes <- na.omit (df.estudiantes)
+
+#Agrupo por año, calculo los totales y porcentajes de varones y mujeres
+
+porcentajes_estudiantes <- limpia.estudiantes %>%
+group_by(Año) %>%
+summarise_all(sum) %>%
+mutate(porc_mujeres = round(100 * Estudiantes.Mujeres/Total.de.Estudiantes,2)) %>%
+mutate(porc_varones = round(100 * Estudiantes.Varones/Total.de.Estudiantes,2))
+
+#Grafico
+
+color_genero <- c(porc_mujeres = "darkviolet", porc_varones = "grey")
+
+
+
+
+
 
   
 
