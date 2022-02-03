@@ -6,6 +6,7 @@ library(readr)
 library(tidyverse)
 library(lubridate)
 library(ggthemes)
+library(plotly)
 
 ## 1. Cargo datos
 
@@ -150,5 +151,120 @@ graf_tres <- ggplot(sp_dos_B, aes(x=reorder(clae2_desc, -porc_medio),
                      labels = sprintf("%.f%%", seq(0,12, by = 2)))
 ggsave("graf_tres.png", width = 40, height = 20, units = "cm")
 
+#-------------------------------------------------------------------------------
+## 6. Analizo participación femenina en empresas
+head(empresas_seis_digitos)
+colnames(datos)
+
+#Junto los datos según clasificación de dos digitos
+nuevo_empresas_dos <- datos %>%  select(5:6)
+nuevo_empresas_dos <- unique(nuevo_empresas)
+nuevo_empresas_dos <- left_join(empresas_dos_digitos, nuevo_empresas_dos)
+nuevo_empresas_dos <- nuevo_empresas_dos %>% mutate(anio = year(fecha),
+                                                    mes = month(fecha))
+#promedio anual en clasificación de dos digitos
+nuevo_empresas_dos <- nuevo_empresas_dos %>% 
+  group_by(anio, mes, clae2_desc, clae2) %>% 
+  summarise(porc_medio = round(mean(share_mujer)*100,2))
+
+##se espera poder filtrar por año y por sector de empresas
+
+#gráfico inicial con "promedio de todos los sectores
+promedio_mensual_gral <- nuevo_empresas_dos %>% 
+  group_by(anio, mes) %>% 
+  summarise(porc_medio = round(mean(porc_medio),2)) %>% 
+  mutate(clae2_desc = "Todos",
+         clae2 = 0)
+#acomodo los datos para unirlos
+p1 <- promedio_mensual_gral %>% select(1,2,4,5)
+p2 <- promedio_mensual_gral %>% select(3)
+p3 <- cbind(p1,p2)
+rm(p1,p2)
+p3 <- p3 %>% select (1:4,6)
+colnames(p3)
+p3 <- p3 %>% rename("anio" = "anio...1")
+
+#incorporo al df uno variable que resuma los datos de todas las categorías para cada año
+df_juntos <- rbind(nuevo_empresas_dos, p3)
+df_juntos <- df_juntos %>% mutate(mes_cuali = case_when(
+                                    mes == 1 ~ "Enero",
+                                    mes == 2 ~ "Febrero",
+                                    mes == 3 ~ "Marzo",
+                                    mes == 4 ~ "Abril",
+                                    mes == 5 ~ "Mayo",
+                                    mes == 6 ~ "Junio",
+                                    mes == 7 ~ "Julio",
+                                    mes == 8 ~ "Agosto",
+                                    mes == 9 ~ "Septiembre",
+                                    mes == 10 ~ "Octubre",
+                                    mes == 11 ~ "Noviembre",
+                                    mes == 12 ~ "Diciembre"))
+
+#pruebo aplicando ambos filtros: 
+filtrado <- df_juntos %>% filter(anio == 2007 & clae2 == 0) %>% arrange(mes)
+filtrado$mes_cuali <- factor(filtrado$mes_cuali, levels = filtrado[["mes_cuali"]])
+
+#ahora debo realizar el gráfico para mostrar la evolución para cada año de la inserción femenina en empresas privadas
+#antes debe ir uno con variación interanual por sector. solo se filtra el sector
+filtrado_uno <- df_juntos %>% 
+                  filter(clae2_desc == "Todos") %>% 
+                  group_by(anio) %>% 
+                  summarise(porc_promedio = round(mean(porc_medio),2))
+
+#formato
+t <- list(
+  family = "Roboto",
+  size = 12,
+  color = '#50535C')
 
 
+#grafico
+graf_anual <- plot_ly(filtrado_uno, 
+                      x = ~anio, y = ~porc_promedio, name = 'Año', type = 'scatter', mode = 'ines+markers',
+               line = list(color = '#F2BBC5', width = 3), 
+               marker = list(color = '#8C0368', size = 8)) %>% 
+  #layout(annotations = valor_inicial)%>% 
+  #layout(annotations = valor_final, font = t)
+               layout(title = '',
+                      xaxis = list(title = "Año"),
+                      yaxis = list(title = 'Promedio anual (%)')) %>% 
+               layout(font = t)
+
+htmlwidgets::saveWidget(graf_anual, "graf_cuatro.html", selfcontained = T)
+
+#este es para mostrar segundo: más específico por sector (reactive del gráfico anterior) y año.  
+valor_inicial <- list(
+  xref = 'paper',
+  x = 0.05,
+  y = porc_medio[1],
+  xanchor = 'right',
+  yanchor = 'middle',
+  text = paste(porc_medio[1], '%'),
+  font = list(family = 'Roboto',
+              size = 12,
+              color = '#50535C'),
+  showarrow = FALSE)
+valor_final <- list(
+  xref = 'paper',
+  x = 0.95,
+  y = porc_medio[12],
+  xanchor = 'left',
+  yanchor = 'middle',
+  text = paste(porc_medio[12], '%'),
+  font = list(family = 'Roboto',
+              size = 12,
+              color = '#50535C'),
+  showarrow = FALSE)
+
+
+fig <- plot_ly(filtrado, x = ~mes_cuali, y = ~porc_medio, name = 'trace 0', type = 'scatter', mode = 'ines+markers',
+               line = list(color = '#BC91D9', width = 3), 
+               marker = list(color = '#362840', size = 8)) %>% 
+  layout(title = "",
+         xaxis = list(title = "Mes"), 
+         yaxis = list(title = " "))  %>% layout(annotations = valor_inicial)%>% 
+  layout(annotations = valor_final, font = t)
+
+fig
+
+htmlwidgets::saveWidget(fig, "graf_cinco.html", selfcontained = T)
