@@ -46,14 +46,20 @@ summarise_all(sum) %>%
 mutate(porc_mujeres = round(100 * Estudiantes.Mujeres/Total.de.Estudiantes,2)) %>%
 mutate(porc_varones = round(100 * Estudiantes.Varones/Total.de.Estudiantes,2))
 
-#Grafico
+#Grafico la progesión de estudiantes varones vs. mujeres
 
-color_genero <- c(porc_mujeres = "darkviolet", porc_varones = "grey")
+ggplot(data=porcentajes_estudiantes) +
+  geom_line(aes(x=Año, y=Estudiantes.Varones), colour="grey") +
+  geom_point(aes(x=Año, y=Estudiantes.Varones), colour="grey") +
+  geom_line(aes(x=Año, y=Estudiantes.Mujeres), colour="darkviolet") +
+  geom_point(aes(x=Año, y=Estudiantes.Mujeres), colour="darkviolet") +
+  scale_y_continuous(breaks = seq(from = 6000,to = 36000,by = 6000))+
+  labs(title = "Cantidad de estudiantes en carreras de programación según género", 
+       x = "Año", 
+       y = "Cantidad", 
+       caption = "Fuente: Elaboración propia en base a datos extraidos de https://mujeresprogramadoras.com.ar/")
 
-
-
-
-
+  
 
   
 
